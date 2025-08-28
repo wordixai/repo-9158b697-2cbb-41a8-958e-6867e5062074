@@ -8,20 +8,207 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-   
-  }
-
-  .dark {
-
+    /* Navy color palette extracted from Fly.io */
+    --navy: 214 25% 22%;
+    --navy-950: 214 30% 5%;
+    --navy-900: 214 28% 8%;
+    --navy-800: 214 26% 12%;
+    --navy-400: 214 15% 45%;
+    
+    /* Violet/Purple palette */
+    --violet-600: 255 54% 64%;
+    --violet-500: 258 90% 66%;
+    --violet-400: 262 83% 58%;
+    --violet-300: 266 85% 78%;
+    --violet-200: 270 100% 88%;
+    --violet-100: 270 100% 95%;
+    --violet-50: 270 100% 98%;
+    --violet-950: 240 39% 9%;
+    
+    /* Additional colors */
+    --purple-600: 251 91% 65%;
+    --indigo-600: 238 64% 60%;
+    --indigo-300: 236 93% 87%;
+    --pink-300: 327 73% 83%;
+    --sky-300: 197 92% 81%;
+    --emerald-500: 160 84% 39%;
+    --green-300: 142 69% 58%;
+    --blue-500: 217 91% 60%;
+    --orange-500: 25 95% 53%;
+    --amber-500: 45 93% 47%;
+    --yellow-200: 54 91% 95%;
+    --orange-200: 40 100% 91%;
+    
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: var(--navy);
+    --card: 0 0% 100%;
+    --card-foreground: var(--navy);
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--navy);
+    --primary: var(--violet-600);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: var(--navy);
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: var(--navy);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: var(--violet-400);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer components {
+  /* Custom font sizes */
+  .text-3.5xl {
+    font-size: 2rem;
+    line-height: 1.2;
   }
-
-  body {
-    @apply bg-background text-foreground;
+  
+  .text-4.5xl {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .text-5.5xl {
+    font-size: 3.5rem;
+    line-height: 1.15;
+  }
+  
+  .text-6.5xl {
+    font-size: 4rem;
+    line-height: 1.15;
+  }
+  
+  .text-1.5xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  /* Custom button styles */
+  .btn-purple {
+    @apply bg-violet-600 text-white hover:bg-violet-700 border-violet-600 hover:border-violet-700;
+  }
+  
+  .btn-translucent {
+    @apply bg-white/20 text-white border-white/30 hover:bg-white/30;
+  }
+  
+  .btn-border-dark {
+    @apply border-2;
+  }
+  
+  .btn-border-light {
+    @apply border border-white/20;
+  }
+  
+  .btn-shadow {
+    @apply shadow-lg shadow-black/10;
+  }
+  
+  .btn-xl {
+    @apply px-8 py-4 text-lg font-semibold rounded-full inline-flex items-center transition-all duration-300;
+  }
+  
+  .btn-2xl {
+    @apply px-6 py-3 text-base font-semibold transition-all duration-300;
+  }
+  
+  .btn-xs {
+    @apply px-4 py-2 text-sm font-semibold;
+  }
+  
+  /* Navy text colors */
+  .text-navy {
+    color: hsl(var(--navy));
+  }
+  
+  .text-navy-950 {
+    color: hsl(var(--navy-950));
+  }
+  
+  .text-navy-400 {
+    color: hsl(var(--navy-400));
+  }
+  
+  .bg-navy {
+    background-color: hsl(var(--navy));
+  }
+  
+  .bg-navy-950 {
+    background-color: hsl(var(--navy-950));
+  }
+  
+  .bg-navy-800 {
+    background-color: hsl(var(--navy-800));
+  }
+  
+  /* Font heading */
+  .font-heading {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-purple {
+    background: linear-gradient(135deg, hsl(var(--purple-600)), hsl(var(--violet-600)), hsl(var(--indigo-600)));
+  }
+  
+  /* Custom grid */
+  .grid-cols-auto-span {
+    grid-template-columns: auto 1fr;
+  }
+  
+  .grid-cols-fit-24 {
+    grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  }
+  
+  /* Animation for infinite scroll */
+  @keyframes infinite-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  
+  .animate-infinite-scroll {
+    animation: infinite-scroll var(--scroll-speed, 60s) linear infinite;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply rounded-3xl shadow-xl;
+  }
+  
+  /* Hover effects */
+  .hocus\:scale-105:hover,
+  .hocus\:scale-105:focus {
+    transform: scale(1.05);
+  }
+  
+  .hocus\:before\:scale-100:hover::before,
+  .hocus\:before\:scale-100:focus::before {
+    transform: scale(1);
+  }
+  
+  .hocus\:before\:bg-violet-50:hover::before,
+  .hocus\:before\:bg-violet-50:focus::before {
+    background-color: hsl(var(--violet-50));
+  }
+  
+  .hocus\:before\:bg-violet-100:hover::before,
+  .hocus\:before\:bg-violet-100:focus::before {
+    background-color: hsl(var(--violet-100));
+  }
+  
+  .hocus\:text-violet-600:hover,
+  .hocus\:text-violet-600:focus {
+    color: hsl(var(--violet-600));
   }
 }
